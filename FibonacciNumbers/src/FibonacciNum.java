@@ -1,11 +1,12 @@
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class FibonacciNum {
     static ArrayList<Integer> numbers = new ArrayList<>();
     public static void main(String[] args) {
-        for (int i = 0; i <= 50; i ++) {
-            System.out.printf("n:%d f:%d", i, fib(i));
+        for (int i = 0; i <= 10000; i ++) {
+            System.out.printf("n:%d f:%d", i, fNumbers(i));
             System.out.println();
         }
     }
@@ -25,5 +26,23 @@ public class FibonacciNum {
         }
         return numbers.get(numbers.size()-1);
     }
+
+    public static BigInteger fNumbers(int num){
+        if(num<0) {
+            System.out.println("Чмсло меньше нуля!");
+            return null;
+        }
+        if(num <= 1)return new BigInteger(String.valueOf(num));
+        BigInteger first = BigInteger.ZERO;
+        BigInteger second = BigInteger.ONE;
+        BigInteger result = BigInteger.ZERO;
+        for (int i = 1; i < num; i++) {
+            result = first.add(second);
+            first = second;
+            second = result;
+        }
+        return result;
+    }
+
 }
 
